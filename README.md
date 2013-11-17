@@ -12,4 +12,4 @@ www.teknia.com/greek-dictionary
 
 You may freely use the dictionary in non-commercial, non-revenue bearing projects.
 
-Please submit any changes here or e-mail them to support@teknia.com so Bill can keep the master copy up-to-date.
+Please submit any changes [here](https://github.com/billmounce/dictionary/issues) or e-mail them to support@teknia.com so Bill can keep the master copy up-to-date.
