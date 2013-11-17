@@ -1,4 +1,4 @@
 dictionary
 ==========
 
-Mounce's Concise Greek-Englihs Dictionary of Biblical Greek
+Mounce's Concise Greek-English Dictionary of Biblical Greek
