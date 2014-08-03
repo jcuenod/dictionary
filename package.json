@@ -1,0 +1,16 @@
+{
+  "name": "mounce-koine-dictionary",
+  "version": "1.0.0",
+  "description": "Mounce's Concise Greek-English Dictionary of Biblical Greek",
+  "main": "dictionary.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/billmounce/dictionary.git"
+  },
+  "author": "Bill Mounce <billmounce@gmail.com>",
+  "license": "Attribution-NonCommercial",
+  "bugs": {
+    "url": "https://github.com/billmounce/dictionary/issues"
+  },
+  "homepage": "https://github.com/billmounce/dictionary"
+}

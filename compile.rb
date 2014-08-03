@@ -28,6 +28,6 @@ File.open("dictionary.txt").each_with_index do |line, index|
   end
 end
 
-File.open("json/main.json","w") do |fileToWrite|
+File.open("dictionary.json","w") do |fileToWrite|
   fileToWrite.write(JSON.pretty_generate(data))
 end
