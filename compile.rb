@@ -11,8 +11,6 @@ def stripPunctuation(str)
   str = Unicode::normalize_C(str)
   str = Unicode::downcase(str)
 
-  # str = Unicode::normalize_C(str)
-
   chars = []
 
   str.each_char do |c|
