@@ -1,6 +1,6 @@
 {
   "name": "mounce-koine-dictionary",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Mounce's Concise Greek-English Dictionary of Biblical Greek",
   "main": "dictionary.json",
   "repository": {

@@ -7,6 +7,22 @@ require 'unicode'
 lastLine = []
 data = {}
 
+def stripPunctuation(str)
+  str = Unicode::normalize_C(str)
+  str = Unicode::downcase(str)
+
+  # str = Unicode::normalize_C(str)
+
+  chars = []
+
+  str.each_char do |c|
+    c = Unicode::decompose_safe(c)
+    chars.push(c[0])
+  end
+
+  return chars.join()
+end
+
 File.open("dictionary.txt").each_with_index do |line, index|
   if line[0..1] == "GK"
     line = line.gsub(/\p{Z}/, ' ').gsub(/\s+/, ' ')
@@ -20,7 +36,10 @@ File.open("dictionary.txt").each_with_index do |line, index|
     tmp1 = line.split('</def>')
     definition = tmp1[0].split('<def>')[1].strip
 
-    data[lemma] = {
+    lemmaWithoutPunctuation = stripPunctuation(lemma)
+
+    data[lemmaWithoutPunctuation] = {
+      "lemma" => lemma,
       "strongs" => strongs.to_i,
       "gk" => gk.to_i,
       "definition" => definition
