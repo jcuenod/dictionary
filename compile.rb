@@ -37,13 +37,12 @@ File.open("dictionary.txt").each_with_index do |line, index|
         # line = line.gsub(/\p{Z}/, ' ').gsub(/\s+/, ' ')
         # tmp1 = line.split('</def>')
         # definition = tmp1[0].split('<def>')[1].strip
-        puts line[/<def>(.*)<\/def>/, 1]
         definition = line[/<def>(.*)<\/def>/, 1]
 
         lemmaWithoutPunctuation = stripPunctuation(lemma)
 
-        data[lemma] = {
-            # "lemma" => lemma,
+        data[lemmaWithoutPunctuation] = {
+            "lemma" => lemma,
             #   "strongs" => strongs.to_i,
             #   "gk" => gk.to_i,
             "definition" => definition
