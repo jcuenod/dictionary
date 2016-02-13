@@ -9,7 +9,6 @@ require 'unicode'
 
 lastLine = []
 data = {}
-definition = ""
 
 def stripPunctuation(str)
   str = Unicode::normalize_C str
