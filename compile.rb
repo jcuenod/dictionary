@@ -1,5 +1,8 @@
 # encoding: UTF-8
-# This file is released into the public domain by Aaron Shafovaloff
+# This file is released into the public domain by
+# - Aaron Shafovaloff
+# - James Cuénod
+
 
 require 'json'
 require 'unicode'
@@ -25,31 +28,34 @@ end
 File.open("dictionary.txt").each_with_index do |line, index|
     next if index < 100
     if line[0..1] == "GK"
-        # line = line.gsub(/\p{Z}/, ' ').gsub(/\s+/, ' ')
-        # lastLine = line.split(' ')
-        lastLine = line.split("   ")
+        lastLine = line.split "   "
     elsif line[0..4] == "<def>"
-        # strongs = lastLine[1].split('G')[1]
-        # gk = lastLine[4].split('G')[1]
-        # lemma = Unicode::normalize_C(lastLine[5])
-        lemma = Unicode::normalize_C lastLine[1]
+        referenceNumbers = lastLine[0].split " | "
+        gk = referenceNumbers[0].gsub(/^GK\ G/, "").to_i
+        strongs = referenceNumbers[1].gsub(/^S\ /, "").gsub(/G/, "").split(/,\ /).map(&:to_i)
 
-        # line = line.gsub(/\p{Z}/, ' ').gsub(/\s+/, ' ')
-        # tmp1 = line.split('</def>')
-        # definition = tmp1[0].split('<def>')[1].strip
+        lemma = Unicode::normalize_C lastLine[1]
+        transliteration = lastLine[2]
+        frequencyCount = lastLine[3].gsub(/x$/, "").to_i
+
+        # Note here that sometimes data is discarded
+        # e.g. see ἅγιος, after </def> there is still data:
+        # "</def>→ consecrate; holy; sacred; saint; sanctify."
         definition = line[/<def>(.*)<\/def>/, 1]
 
         lemmaWithoutPunctuation = stripPunctuation(lemma)
 
         data[lemmaWithoutPunctuation] = {
+            "gk" => gk,
+            "strongs" => strongs,
             "lemma" => lemma,
-            #   "strongs" => strongs.to_i,
-            #   "gk" => gk.to_i,
+            "transliteration" => transliteration,
+            "frequencyCount" => frequencyCount,
             "definition" => definition
         }
     end
 end
 
-File.open("dictionary2.json","w") do |fileToWrite|
+File.open("dictionary.json","w") do |fileToWrite|
   fileToWrite.write(JSON.pretty_generate(data))
 end
